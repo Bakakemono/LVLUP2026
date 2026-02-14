@@ -1,7 +1,6 @@
 using UnityEngine;
 
-public class Plant : MonoBehaviour
-{
+public class Plant : MonoBehaviour {
     public Transform _transform;
     Transform _sunTransform;
 
@@ -17,7 +16,6 @@ public class Plant : MonoBehaviour
     }
 
     public void AddLightPoint() {
-        Debug.Log(gameObject.name + "Lighten Up");
         _lightAborbed++;
     }
 }

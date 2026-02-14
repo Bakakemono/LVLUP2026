@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SunManager : MonoBehaviour {
+public class CycleManager : MonoBehaviour {
     Transform _sunTransform;
     [SerializeField, Range(1f, 360f)]
     float _degPerSecond = 60f;

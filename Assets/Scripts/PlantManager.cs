@@ -7,7 +7,15 @@ public class PlantManager : MonoBehaviour {
     public static PlantManager _instance;
 
     [SerializeField] List<Plant> _plantedPlants;
-    Transform _sunTransform;
+    Transform _sunTransform {
+        get {
+            if(sunTransform == null)
+                sunTransform = FindFirstObjectByType<Sun>().transform;
+
+            return sunTransform;
+        }
+    }
+    Transform sunTransform;
     Transform _moonTransform;
 
     [SerializeField] LayerMask _hitLayerMask;
@@ -26,10 +34,6 @@ public class PlantManager : MonoBehaviour {
         }
 
         DontDestroyOnLoad(gameObject);
-    }
-
-    private void Start() {
-        _sunTransform = FindFirstObjectByType<Sun>().transform;
     }
 
     public void LightPlants(bool _sunLight) {
@@ -61,5 +65,8 @@ public class PlantManager : MonoBehaviour {
                     plant.AddLightPoint();
             }
         }
+    }
+    public void RegisterNewPlant(Plant plant) {
+        _plantedPlants.Add(plant);
     }
 }
