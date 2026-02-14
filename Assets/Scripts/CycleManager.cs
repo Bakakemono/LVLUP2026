@@ -12,6 +12,8 @@ public class CycleManager : MonoBehaviour {
 
     bool _startCycle = false;
 
+    
+
     private void FixedUpdate() {
         if(_sunDown || !_startCycle)
             return;
@@ -30,7 +32,19 @@ public class CycleManager : MonoBehaviour {
         }
     }
 
-    public void StartCycle() {
+    public void StartSunCycle() {
         _startCycle = true;
+    }
+
+    public void StartMoonCycle() {
+
+    }
+
+    void SunCycle() {
+
+    }
+
+    void MoonCycle() {
+
     }
 }
