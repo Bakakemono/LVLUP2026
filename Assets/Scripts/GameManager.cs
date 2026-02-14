@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void PingSunray(bool sunLight) {
+    public void PingAstreEffect(bool sunLight) {
         PlantManager._instance.LightPlants(sunLight);
     }
 }

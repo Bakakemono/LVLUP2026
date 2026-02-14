@@ -4,10 +4,15 @@ using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 
 public class PlantMenuManager : MonoBehaviour {
+    public static PlantMenuManager _instance;
+
     SpotsManager _spotsManager;
 
 
     [SerializeField] GameObject[] _plantsPrefabs;
+    [SerializeField] GameObject[] _allObstaclesPrefabs;
+    [SerializeField] GameObject[] _lightObstaclesPrefabs;
+    [SerializeField] GameObject[] _darknessObstaclesPrefabs;
 
     Plant _selectedPlant;
     bool _selectedPlantInHand = false;
@@ -23,7 +28,14 @@ public class PlantMenuManager : MonoBehaviour {
     
 
     private void Awake() {
-        _inputSystem = new InputSystem_Actions();
+        if(_instance == null) {
+            _instance = this;
+        }
+        else {
+            Destroy(gameObject);
+        }
+
+            _inputSystem = new InputSystem_Actions();
         _inputSystem.Player.Click.performed += PlacePlant;
         _inputSystem.Player.Click.Enable();
     }

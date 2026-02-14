@@ -16,7 +16,16 @@ public class PlantManager : MonoBehaviour {
         }
     }
     Transform sunTransform;
-    Transform _moonTransform;
+
+    Transform _moonTransform {
+        get {
+            if(moonTransform == null)
+                moonTransform = FindFirstObjectByType<Moon>().transform;
+
+            return moonTransform;
+        }
+    }
+    Transform moonTransform;
 
     [SerializeField] LayerMask _hitLayerMask;
     [SerializeField] LayerMask _plantLayerMask;
@@ -37,15 +46,16 @@ public class PlantManager : MonoBehaviour {
     }
 
     public void LightPlants(bool _sunLight) {
-        
+        Transform star = _sunLight ? _sunTransform : _moonTransform;
+
         foreach(var plant in _plantedPlants) {
-            Debug.DrawRay(_sunTransform.position, plant.transform.position - _sunTransform.position, Color.red, 1f);
+            Debug.DrawRay(star.position, plant.transform.position - star.position, Color.red, 1f);
 
             RaycastHit2D[] hits =
                 Physics2D.RaycastAll(
                     _sunTransform.position,
-                    plant.transform.position - _sunTransform.position,
-                    (plant.transform.position - _sunTransform.position).magnitude,
+                    plant.transform.position - star.position,
+                    (plant.transform.position - star.position).magnitude,
                     _hitLayerMask
                     );
 
