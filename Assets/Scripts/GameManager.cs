@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Scene Management
-    public void SwitchToGame() {
+    public void StartGame() {
         SceneManager.LoadScene("S_Game", LoadSceneMode.Single);
     }
 
