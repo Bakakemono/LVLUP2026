@@ -10,9 +10,12 @@ public class SunManager : MonoBehaviour {
 
     bool _clockWise = true;
 
+    bool _startCycle = false;
+
     private void FixedUpdate() {
-        if(_sunDown)
+        if(_sunDown || !_startCycle)
             return;
+
         //transform.Rotate(0f, 0f, -15f * Time.fixedDeltaTime);
         transform.rotation = Quaternion.Euler(0f, 0f, transform.rotation.eulerAngles.z + (_clockWise ? -1f : 1f) * _degPerSecond * Time.fixedDeltaTime);
 
@@ -22,8 +25,12 @@ public class SunManager : MonoBehaviour {
                 _sunDown = true;
                 return;
             }
-            GameManager._instance.PingSunray();
             _lastSunPing += 180f / (_pingPerDay + 1);
+            GameManager._instance.PingSunray(true);
         }
+    }
+
+    public void StartCycle() {
+        _startCycle = true;
     }
 }

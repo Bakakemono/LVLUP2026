@@ -10,7 +10,11 @@ public class PlantManager : MonoBehaviour {
     Transform _sunTransform;
     Transform _moonTransform;
 
-    [SerializeField] ContactFilter2D _contactFilter;
+    [SerializeField] LayerMask _hitLayerMask;
+    [SerializeField] LayerMask _plantLayerMask;
+    [SerializeField] LayerMask _stopAllLayerMask;
+    [SerializeField] LayerMask _stopLightLayerMask;
+    [SerializeField] LayerMask _stopDarklayerMask;
 
     private void Awake() {
         if(_instance == null) {
@@ -25,21 +29,36 @@ public class PlantManager : MonoBehaviour {
     }
 
     private void Start() {
-        
         _sunTransform = FindFirstObjectByType<Sun>().transform;
     }
 
-    public void LightPlants() {
+    public void LightPlants(bool _sunLight) {
         
         foreach(var plant in _plantedPlants) {
-            Ray2D ray = new Ray2D(_sunTransform.position, plant.transform.position - _sunTransform.position);
             Debug.DrawRay(_sunTransform.position, plant.transform.position - _sunTransform.position, Color.red, 1f);
-            RaycastHit2D[] result = new RaycastHit2D[1];
 
-            if(Physics2D.Raycast(_sunTransform.position, plant.transform.position - _sunTransform.position, _contactFilter, result, (plant.transform.position - _sunTransform.position).magnitude) > 0) {
-                Debug.Log(result[0].transform.gameObject.name);
+            RaycastHit2D[] hits =
+                Physics2D.RaycastAll(
+                    _sunTransform.position,
+                    plant.transform.position - _sunTransform.position,
+                    (plant.transform.position - _sunTransform.position).magnitude,
+                    _hitLayerMask
+                    );
 
-                plant.AddLightPoint();
+            if(hits.Length > 0) {
+                bool hitObstacle = false;
+                foreach(var hit in hits) {
+                    int layerConvertedValue = 1 << hit.transform.gameObject.layer;
+                    if(layerConvertedValue == _stopAllLayerMask.value ||
+                        (_sunLight && layerConvertedValue == _stopLightLayerMask) ||
+                        (!_sunLight && layerConvertedValue == _stopDarklayerMask)) {
+                        hitObstacle = true;
+                        break;
+                    }
+                }
+
+                if(!hitObstacle)
+                    plant.AddLightPoint();
             }
         }
     }

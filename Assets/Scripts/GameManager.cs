@@ -7,8 +7,6 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour
 {
     public static GameManager _instance;
-
-    List<Plant> _plantedPlants;
     
     private void Awake() {
         // Create an instance of the Gamemanager.
@@ -22,10 +20,6 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Start() {
-        _plantedPlants = new List<Plant>();
-    }
-
     // Scene Management
     public void SwitchToGame() {
         SceneManager.LoadScene("S_Game", LoadSceneMode.Single);
@@ -35,7 +29,7 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void PingSunray() {
-        PlantManager._instance.LightPlants();
+    public void PingSunray(bool sunLight) {
+        PlantManager._instance.LightPlants(sunLight);
     }
 }
