@@ -16,6 +16,12 @@ public class PlantMenuManager : MonoBehaviour {
 
     InputSystem_Actions _inputSystem;
 
+    [SerializeField] RectTransform _menuTransform;
+    Vector3 _menuInitialpose;
+    bool _hideMenu;
+    
+    
+
     private void Awake() {
         _inputSystem = new InputSystem_Actions();
         _inputSystem.Player.Click.performed += PlacePlant;
@@ -27,16 +33,14 @@ public class PlantMenuManager : MonoBehaviour {
 
         Vector2 screenMousePos = Mouse.current.position.ReadValue();
         _mouseWorldPos = Camera.main.ScreenToWorldPoint(screenMousePos);
+
+        _menuInitialpose = _menuTransform.anchoredPosition;
     }
-
-    public void SelectPlant(int index) {
-        _selectedPlant = Instantiate(_plantsPrefabs[index], Vector2.one * 100, Quaternion.identity).GetComponent<Plant>();
-        _selectedPlantInHand = true;
-
-        _spotsManager.EnableAllSpots(true);
-    }
-
     private void FixedUpdate() {
+        if(!Mathf.Approximately(_menuTransform.anchoredPosition.x, (_hideMenu ? -1f : 1f) * _menuInitialpose.x)) {  
+            _menuTransform.anchoredPosition = Vector3.Lerp(_menuTransform.anchoredPosition, (_hideMenu ? -1f : 1f) * _menuInitialpose, 0.2f);
+        }
+
         if(!_selectedPlantInHand)
             return;
 
@@ -47,6 +51,15 @@ public class PlantMenuManager : MonoBehaviour {
         _spotsManager.UpdateSpots(_mouseWorldPos);
     }
 
+
+    public void SelectPlant(int index) {
+        _selectedPlant = Instantiate(_plantsPrefabs[index], Vector2.one * 100, Quaternion.identity).GetComponent<Plant>();
+        _selectedPlantInHand = true;
+
+        _spotsManager.EnableAllSpots(true);
+        _hideMenu = true;
+    }
+
     void PlacePlant(InputAction.CallbackContext obj) {
         if(!_selectedPlantInHand)
             return;
@@ -55,9 +68,10 @@ public class PlantMenuManager : MonoBehaviour {
         
         _selectedPlantInHand = false;
         _spotsManager.EnableAllSpots(false);
+        _hideMenu = false;
 
         if(spot == null) {
-            Destroy(_selectedPlant);
+            Destroy(_selectedPlant.gameObject);
         }
         else {
             PlantManager._instance.RegisterNewPlant(_selectedPlant);

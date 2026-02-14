@@ -934,6 +934,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlantMenuManager
   _plantsPrefabs:
   - {fileID: 15470727563181349, guid: 2b66aa209f590dd4585ab4c62284be87, type: 3}
+  _menuTransform: {fileID: 1854830072}
 --- !u!4 &630813339
 Transform:
   m_ObjectHideFlags: 0
