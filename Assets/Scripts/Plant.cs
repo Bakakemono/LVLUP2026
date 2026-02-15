@@ -38,11 +38,13 @@ public class Plant : MonoBehaviour {
     }
 
     public void AddLightPoint() {
+        Debug.Log("Add Light Point");
         _lightAborbed++;
         UpdateState();
     }
 
     public void AddDarknessPoint() {
+        Debug.Log("Add Darkness Point");
         _darknessAbsorbed++;
         UpdateState();
     }

@@ -45,15 +45,15 @@ public class PlantManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
-    public void LightPlants(bool _sunLight) {
-        Transform star = _sunLight ? _sunTransform : _moonTransform;
+    public void LightPlants(bool sunLight) {
+        Transform star = sunLight ? _sunTransform : _moonTransform;
 
         foreach(var plant in _plantedPlants) {
             Debug.DrawRay(star.position, plant.transform.position - star.position, Color.red, 1f);
 
             RaycastHit2D[] hits =
                 Physics2D.RaycastAll(
-                    _sunTransform.position,
+                    star.position,
                     plant.transform.position - star.position,
                     (plant.transform.position - star.position).magnitude,
                     _hitLayerMask
@@ -64,15 +64,21 @@ public class PlantManager : MonoBehaviour {
                 foreach(var hit in hits) {
                     int layerConvertedValue = 1 << hit.transform.gameObject.layer;
                     if(layerConvertedValue == _stopAllLayerMask.value ||
-                        (_sunLight && layerConvertedValue == _stopLightLayerMask) ||
-                        (!_sunLight && layerConvertedValue == _stopDarklayerMask)) {
+                        (sunLight && layerConvertedValue == _stopLightLayerMask) ||
+                        (!sunLight && layerConvertedValue == _stopDarklayerMask)) {
                         hitObstacle = true;
+                        Debug.Log("Block");
                         break;
                     }
                 }
 
-                if(!hitObstacle)
+                if(hitObstacle)
+                    return;
+
+                if(sunLight)
                     plant.AddLightPoint();
+                else
+                    plant.AddDarknessPoint();
             }
         }
     }
