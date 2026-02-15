@@ -28,6 +28,18 @@ public class PlantMenuManager : MonoBehaviour {
 
     [SerializeField] LayerMask _recoltLayerMask;
 
+    int _luxPoints = 0;
+    int _luxPerfectPoints = 0;
+
+    int _noxPoints = 0;
+    int _noxPerrfectPoints = 0;
+
+    int _mothNoxPoints = 0;
+    int _mothNoxPerfectPoints = 0;
+
+    int _mothLuxPointx = 0;
+    int _mothLuxPerfectPoints = 0;
+
     private void Awake() {
         if(_instance == null) {
             _instance = this;
@@ -136,7 +148,7 @@ public class PlantMenuManager : MonoBehaviour {
     }
 
     void Recolte(InputAction.CallbackContext obj) {
-        if(_selectedObjectInHand)
+        if(_selectedObjectInHand || GameManager._instance._starMoving)
             return;
 
         Vector2 screenMousePos = Mouse.current.position.ReadValue();
@@ -147,11 +159,11 @@ public class PlantMenuManager : MonoBehaviour {
         if(hit.transform == null) return;
 
         Plant plant = hit.transform.GetComponent<Plant>();
-        if(plant != null) {
+        if(plant != null && !GameManager._instance._cycleInProgress) {
             plant._occupiedSpot.ReleaseSpot();
             Destroy(plant.gameObject);
         }
-        else {
+        else if(plant == null) {
             Obstacle obstacle = hit.transform.GetComponent<Obstacle>();
             obstacle._occupiedSpot.ReleaseSpot();
             Destroy(obstacle.gameObject);

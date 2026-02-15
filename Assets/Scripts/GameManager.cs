@@ -7,7 +7,10 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour
 {
     public static GameManager _instance;
-    
+
+    public bool _cycleInProgress = false;
+    public bool _starMoving = false;
+
     private void Awake() {
         // Create an instance of the Gamemanager.
         if(_instance == null)

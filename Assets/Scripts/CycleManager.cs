@@ -25,11 +25,16 @@ public class CycleManager : MonoBehaviour {
     }
 
     public void StartSunCycle() {
+        GameManager._instance._cycleInProgress = true;
+        GameManager._instance._starMoving = true;
+
         _startDayButton.gameObject.SetActive(false);
         _dayCycle = true;
     }
 
     public void StartMoonCycle() {
+        GameManager._instance._starMoving = true;
+
         _startNightButton.gameObject.SetActive(false);
         _nightCycle = true;
     }
@@ -44,6 +49,8 @@ public class CycleManager : MonoBehaviour {
                 _startNightButton.gameObject.SetActive(true);
                 _lastPing = -180f;
                 _currentRotation = -180f;
+
+                GameManager._instance._starMoving = false;
                 return;
             }
             _lastPing += -180f / (_pingPerDay + 1);
@@ -61,6 +68,9 @@ public class CycleManager : MonoBehaviour {
                 _startDayButton.gameObject.SetActive(true);
                 _lastPing = 0f;
                 _currentRotation = 0f;
+
+                GameManager._instance._cycleInProgress = false;
+                GameManager._instance._starMoving = false;
                 return;
             }
             _lastPing += -180f / (_pingPerDay + 1);
