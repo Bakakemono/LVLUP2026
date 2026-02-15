@@ -161,6 +161,7 @@ public class PlantMenuManager : MonoBehaviour {
         Plant plant = hit.transform.GetComponent<Plant>();
         if(plant != null && !GameManager._instance._cycleInProgress) {
             plant._occupiedSpot.ReleaseSpot();
+            plant.RegisterPoints();
             Destroy(plant.gameObject);
         }
         else if(plant == null) {

@@ -11,6 +11,20 @@ public class GameManager : MonoBehaviour
     public bool _cycleInProgress = false;
     public bool _starMoving = false;
 
+
+    public int _luxPoints = 0;
+    public int _luxPerfectPoints = 0;
+    
+    public int _noxPoints = 0;
+    public int _noxPerrfectPoints = 0;
+    
+    public int _mothNoxPoints = 0;
+    public int _mothNoxPerfectPoints = 0;
+    
+    public int _mothLuxPoints = 0;
+    public int _mothLuxPerfectPoints = 0;
+
+
     private void Awake() {
         // Create an instance of the Gamemanager.
         if(_instance == null)

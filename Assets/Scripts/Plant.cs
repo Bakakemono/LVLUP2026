@@ -9,6 +9,14 @@ public class Plant : MonoBehaviour {
         DEAD
     }
 
+    public enum PlantTypes {
+        LUX,
+        NOX,
+        MOTH_LUX,
+        MOTH_NOX
+    }
+
+    PlantTypes _planteType = PlantTypes.LUX;
     PlantStates _plantState = PlantStates.BABY;
 
     [Header("Plant States")]
@@ -86,5 +94,40 @@ public class Plant : MonoBehaviour {
         _wellForm.SetActive(false);
         _greatForm.SetActive(false);
         _deadForm.SetActive(false);
+    }
+
+    public void RegisterPoints() {
+        if(_plantState == PlantStates.DEAD || _plantState == PlantStates.BABY)
+            return;
+
+        switch(_planteType) {
+            case PlantTypes.LUX:
+                if(_plantState == PlantStates.WELL)
+                    GameManager._instance._luxPoints++;
+                else if(_plantState == PlantStates.GREAT)
+                    GameManager._instance._luxPerfectPoints++;
+                break;
+
+            case PlantTypes.NOX:
+                if(_plantState == PlantStates.WELL)
+                    GameManager._instance._noxPoints++;
+                else if(_plantState == PlantStates.GREAT)
+                    GameManager._instance._noxPerrfectPoints++;
+                break;
+
+            case PlantTypes.MOTH_LUX:
+                if(_plantState == PlantStates.WELL)
+                    GameManager._instance._mothLuxPoints++;
+                else if(_plantState == PlantStates.GREAT)
+                    GameManager._instance._mothLuxPerfectPoints++;
+                break;
+
+            case PlantTypes.MOTH_NOX:
+                if(_plantState == PlantStates.WELL)
+                    GameManager._instance._mothNoxPoints++;
+                else if(_plantState == PlantStates.GREAT)
+                    GameManager._instance._mothNoxPerfectPoints++;
+                break;
+        }
     }
 }
