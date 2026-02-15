@@ -1854,6 +1854,9 @@ MonoBehaviour:
   - {fileID: 2762578613509590808, guid: 1dd8f7e4a45a6084e8d9dcb810e9dc54, type: 3}
   - {fileID: 2762578613509590808, guid: 44d8d44b6503a0a44b5bf8b28856326b, type: 3}
   _menuTransform: {fileID: 1854830072}
+  _recoltLayerMask:
+    serializedVersion: 2
+    m_Bits: 960
 --- !u!4 &630813339
 Transform:
   m_ObjectHideFlags: 0

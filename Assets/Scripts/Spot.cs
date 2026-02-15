@@ -13,6 +13,7 @@ public class Spot : MonoBehaviour
 
     [SerializeField] public SpotType _spotType;
 
+
     bool _enable = false;
 
     SpriteRenderer _spriteRenderer;
@@ -45,6 +46,10 @@ public class Spot : MonoBehaviour
 
     public void OccupiedSpot() {
         _occupied = true;
+    }
+
+    public void ReleaseSpot() {
+        _occupied = false;
     }
 
     public bool IsItTaken() {

@@ -8,7 +8,6 @@ public class PlantMenuManager : MonoBehaviour {
 
     SpotsManager _spotsManager;
 
-
     [SerializeField] GameObject[] _plantsPrefabs;
     [SerializeField] GameObject[] _leftObstaclesPrefabs;
     [SerializeField] GameObject[] _rightObstaclesPrefabs;
@@ -27,6 +26,8 @@ public class PlantMenuManager : MonoBehaviour {
 
     Spot.SpotType _spotType;
 
+    [SerializeField] LayerMask _recoltLayerMask;
+
     private void Awake() {
         if(_instance == null) {
             _instance = this;
@@ -38,6 +39,9 @@ public class PlantMenuManager : MonoBehaviour {
             _inputSystem = new InputSystem_Actions();
         _inputSystem.Player.Click.performed += PlacePlant;
         _inputSystem.Player.Click.Enable();
+
+        _inputSystem.Player.Recolte.performed += Recolte;
+        _inputSystem.Player.Recolte.Enable();
     }
 
     void Start() {
@@ -116,13 +120,41 @@ public class PlantMenuManager : MonoBehaviour {
             Destroy(_selectedObject.gameObject);
         }
         else {
-            if(_spotType == Spot.SpotType.PLANT)
+            if(_spotType == Spot.SpotType.PLANT) {
                 PlantManager._instance.RegisterNewPlant(_selectedObject.GetComponent<Plant>());
+                _selectedObject.GetComponent<Plant>()._occupiedSpot = spot;
+            }
+            else {
+                _selectedObject.GetComponent<Obstacle>()._occupiedSpot = spot;
+            }
 
-            _selectedObject.transform.position = spot.transform.position;
+                _selectedObject.transform.position = spot.transform.position;
             spot.OccupiedSpot();
             _selectedObject = null;
         }
         _spotType = Spot.SpotType.NONE;
+    }
+
+    void Recolte(InputAction.CallbackContext obj) {
+        if(_selectedObjectInHand)
+            return;
+
+        Vector2 screenMousePos = Mouse.current.position.ReadValue();
+        _mouseWorldPos = Camera.main.ScreenToWorldPoint(screenMousePos);
+
+        RaycastHit2D hit = Physics2D.Raycast(_mouseWorldPos, Vector2.down, 0.1f, _recoltLayerMask);
+        
+        if(hit.transform == null) return;
+
+        Plant plant = hit.transform.GetComponent<Plant>();
+        if(plant != null) {
+            plant._occupiedSpot.ReleaseSpot();
+            Destroy(plant.gameObject);
+        }
+        else {
+            Obstacle obstacle = hit.transform.GetComponent<Obstacle>();
+            obstacle._occupiedSpot.ReleaseSpot();
+            Destroy(obstacle.gameObject);
+        }
     }
 }

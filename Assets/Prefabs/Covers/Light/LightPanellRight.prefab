@@ -101,6 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1391236050024235148}
   - component: {fileID: 1412059196306412927}
+  - component: {fileID: -1065226656539070007}
   m_Layer: 8
   m_Name: LightPanellRight
   m_TagString: Untagged
@@ -170,3 +171,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.5, y: 2.3}
   m_EdgeRadius: 0
+--- !u!114 &-1065226656539070007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2762578613509590808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a1cf8cd834250741b1b8ca34617afbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Obstacle

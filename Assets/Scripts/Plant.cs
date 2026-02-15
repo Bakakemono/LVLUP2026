@@ -32,6 +32,9 @@ public class Plant : MonoBehaviour {
     [SerializeField, Range(0, 10)] int _perfectDarknessValue = 5;
     [SerializeField] int _darknessAbsorbed = 0;
 
+
+    public Spot _occupiedSpot;
+
     private void Start() {
         _transform = transform;
         _sunTransform = FindFirstObjectByType<Sun>().transform;
