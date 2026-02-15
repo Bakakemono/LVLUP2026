@@ -1,0 +1,559 @@
+fileFormatVersion: 2
+guid: b915924cc95ce704bb085452e5e06db0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3741186814728643679
+    second: Sprite_butonDayOff_0
+  - first:
+      213: -8017596566108269810
+    second: Sprite_butonDayOff_1
+  - first:
+      213: 2060854441288954935
+    second: Sprite_butonDayOff_2
+  - first:
+      213: -827665449498234304
+    second: Sprite_butonDayOff_3
+  - first:
+      213: -7662545863292143204
+    second: Sprite_butonDayOff_4
+  - first:
+      213: -8722250236560829521
+    second: Sprite_butonDayOff_5
+  - first:
+      213: 6487686731497244366
+    second: Sprite_butonDayOff_6
+  - first:
+      213: -3392678095427507338
+    second: Sprite_butonDayOff_7
+  - first:
+      213: 2727855691742116775
+    second: Sprite_butonDayOff_8
+  - first:
+      213: 5306090363699218635
+    second: Sprite_butonDayOff_9
+  - first:
+      213: -4371570542064257679
+    second: Sprite_butonDayOff_10
+  - first:
+      213: -7055007247040557660
+    second: Sprite_butonDayOff_11
+  - first:
+      213: -6839266659534101580
+    second: Sprite_butonDayOff_12
+  - first:
+      213: 4021242189411284266
+    second: Sprite_butonDayOff_13
+  - first:
+      213: -8496581844996516341
+    second: Sprite_butonDayOff_14
+  - first:
+      213: -4321259395677136471
+    second: Sprite_butonDayOff_15
+  - first:
+      213: -761126989440510654
+    second: Sprite_butonDayOff_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Sprite_butonDayOff_0
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 334
+        width: 97
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f54a64a169d5be330800000000000000
+      internalID: 3741186814728643679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_butonDayOff_1
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 351
+        width: 57
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0399b4f666cbb090800000000000000
+      internalID: -8017596566108269810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_butonDayOff_2
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 366
+        width: 23
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73470da0230a99c10800000000000000
+      internalID: 2060854441288954935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_butonDayOff_3
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 352
+        width: 57
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0423bc9a8aa8384f0800000000000000
+      internalID: -827665449498234304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_butonDayOff_4
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 335
+        width: 95
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c99355f922b29a590800000000000000
+      internalID: -7662545863292143204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_butonDayOff_5
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 289
+        width: 112
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa399bf4f9754f680800000000000000
+      internalID: -8722250236560829521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_butonDayOff_6
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 163
+        width: 183
+        height: 186
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec688e485b4e80a50800000000000000
+      internalID: 6487686731497244366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_butonDayOff_7
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 289
+        width: 113
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67b6bc45f39cae0d0800000000000000
+      internalID: -3392678095427507338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_butonDayOff_8
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 245
+        width: 136
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7abf0d08c4a4bd520800000000000000
+      internalID: 2727855691742116775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_butonDayOff_9
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 245
+        width: 138
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc84a6aa21503a940800000000000000
+      internalID: 5306090363699218635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_butonDayOff_10
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 171
+        width: 112
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 175b2b9e0cf0553c0800000000000000
+      internalID: -4371570542064257679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_butonDayOff_11
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 75
+        width: 95
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ad4750b944971e90800000000000000
+      internalID: -7055007247040557660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_butonDayOff_12
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 75
+        width: 99
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b32c4a853b0611a0800000000000000
+      internalID: -6839266659534101580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_butonDayOff_13
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 170
+        width: 111
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a257caf37725ec730800000000000000
+      internalID: 4021242189411284266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_butonDayOff_14
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 56
+        width: 55
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0613fb24d3161a80800000000000000
+      internalID: -8496581844996516341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_butonDayOff_15
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 21
+        width: 21
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a95852897dc704c0800000000000000
+      internalID: -4321259395677136471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_butonDayOff_16
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 57
+        width: 56
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2459f65290fef65f0800000000000000
+      internalID: -761126989440510654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Sprite_butonDayOff_0: 3741186814728643679
+      Sprite_butonDayOff_1: -8017596566108269810
+      Sprite_butonDayOff_10: -4371570542064257679
+      Sprite_butonDayOff_11: -7055007247040557660
+      Sprite_butonDayOff_12: -6839266659534101580
+      Sprite_butonDayOff_13: 4021242189411284266
+      Sprite_butonDayOff_14: -8496581844996516341
+      Sprite_butonDayOff_15: -4321259395677136471
+      Sprite_butonDayOff_16: -761126989440510654
+      Sprite_butonDayOff_2: 2060854441288954935
+      Sprite_butonDayOff_3: -827665449498234304
+      Sprite_butonDayOff_4: -7662545863292143204
+      Sprite_butonDayOff_5: -8722250236560829521
+      Sprite_butonDayOff_6: 6487686731497244366
+      Sprite_butonDayOff_7: -3392678095427507338
+      Sprite_butonDayOff_8: 2727855691742116775
+      Sprite_butonDayOff_9: 5306090363699218635
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
