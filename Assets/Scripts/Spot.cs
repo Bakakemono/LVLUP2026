@@ -3,6 +3,16 @@ using UnityEngine;
 
 public class Spot : MonoBehaviour
 {
+    public enum SpotType {
+        NONE,
+        PLANT,
+        LEFT,
+        RIGHT,
+        TOP
+    }
+
+    [SerializeField] public SpotType _spotType;
+
     bool _enable = false;
 
     SpriteRenderer _spriteRenderer;
