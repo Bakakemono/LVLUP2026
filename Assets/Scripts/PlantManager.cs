@@ -2,6 +2,7 @@ using NUnit.Framework.Constraints;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlantManager : MonoBehaviour {
     public static PlantManager _instance;
@@ -49,7 +50,7 @@ public class PlantManager : MonoBehaviour {
         Transform star = sunLight ? _sunTransform : _moonTransform;
 
         foreach(var plant in _plantedPlants) {
-            Debug.DrawRay(star.position, plant.transform.position - star.position, Color.red, 1f);
+            //Debug.DrawRay(star.position, plant.transform.position - star.position, Color.red, 1f);
 
             RaycastHit2D[] hits =
                 Physics2D.RaycastAll(
@@ -84,5 +85,15 @@ public class PlantManager : MonoBehaviour {
     }
     public void RegisterNewPlant(Plant plant) {
         _plantedPlants.Add(plant);
+    }
+
+    public void DeregisterPlant(Plant plant) {
+        _plantedPlants.Remove(plant);
+    }
+
+    public void RevealPerfectPlant() {
+        foreach(var plant in _plantedPlants){
+            plant.UpgradeToPerfect();
+        }
     }
 }

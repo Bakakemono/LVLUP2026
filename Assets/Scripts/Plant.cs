@@ -2,10 +2,10 @@ using System.Linq;
 using UnityEngine;
 
 public class Plant : MonoBehaviour {
-    enum PlantStates {
+    public enum PlantStates {
         BABY,
         WELL,
-        GREAT,
+        PERFECT,
         DEAD
     }
 
@@ -13,17 +13,22 @@ public class Plant : MonoBehaviour {
         LUX,
         NOX,
         MOTH_LUX,
-        MOTH_NOX
+        MOTH_NOX,
+        MOTH
     }
 
     PlantTypes _planteType = PlantTypes.LUX;
     PlantStates _plantState = PlantStates.BABY;
+
+    [SerializeField] bool _mothPlant = false;
 
     [Header("Plant States")]
     [SerializeField] GameObject _babyForm;
     [SerializeField] GameObject _wellForm;
     [SerializeField] GameObject _greatForm;
     [SerializeField] GameObject _deadForm;
+    [SerializeField] GameObject _wellFormAlternative;
+    [SerializeField] GameObject _greatFormAlternative;
 
     public Transform _transform;
     Transform _sunTransform;
@@ -64,14 +69,18 @@ public class Plant : MonoBehaviour {
         if(_plantState == PlantStates.DEAD)
             return;
 
+        if(_mothPlant) {
+            MothSpecialUpdate();
+            return;
+        }
+
         if(_lightAborbed >= _minLightNecessary && _lightAborbed <= _maxLightNecessary && _darknessAbsorbed >= _minDarknessNecessary && _darknessAbsorbed <= _maxDarknessNecessary) {
             if(_plantState != PlantStates.DEAD) {
                 _plantState = PlantStates.WELL;
                 DisableAllStates();
                 _wellForm.SetActive(true);
                 if(_lightAborbed == _perfectLightValue && _darknessAbsorbed == _perfectDarknessValue) {
-                    _plantState = PlantStates.GREAT;
-                    UpgradeToPerfect();
+                    _plantState = PlantStates.PERFECT;
                 }
             }
         }
@@ -82,9 +91,50 @@ public class Plant : MonoBehaviour {
         }
     }
 
+    public void MothSpecialUpdate() {
+        if(_lightAborbed > _darknessAbsorbed) {
+            if(_lightAborbed > _maxLightNecessary) {
+                _plantState = PlantStates.DEAD;
+                DisableAllStates();
+                _deadForm.SetActive(true);
+                return;
+            }
+            else if(_lightAborbed == 6 && _darknessAbsorbed == 3) {
+                _plantState = PlantStates.PERFECT;
+            }
+            else {
+                _plantState = PlantStates.WELL;
+                DisableAllStates();
+                _wellForm.SetActive(true);
+            }
+        }
+        else if(_lightAborbed < _darknessAbsorbed) {
+            if(_darknessAbsorbed > _maxDarknessNecessary) {
+                _plantState = PlantStates.DEAD;
+                DisableAllStates();
+                _deadForm.SetActive(true);
+                return;
+            }
+            else if(_lightAborbed == 3 && _darknessAbsorbed == 6) {
+                _plantState = PlantStates.PERFECT;
+            }
+            else {
+                _plantState = PlantStates.WELL;
+                DisableAllStates();
+                _wellFormAlternative.SetActive(true);
+            }
+        }
+    }
+
     public void UpgradeToPerfect() {
-        if(_plantState == PlantStates.GREAT) {
+        if(_plantState == PlantStates.PERFECT) {
             DisableAllStates();
+            if(_mothPlant) {
+                if(_planteType == PlantTypes.MOTH_NOX) {
+                    _greatFormAlternative.SetActive(true);
+                    return;
+                }
+            }
             _greatForm.SetActive(true);
         }
     }
@@ -94,6 +144,8 @@ public class Plant : MonoBehaviour {
         _wellForm.SetActive(false);
         _greatForm.SetActive(false);
         _deadForm.SetActive(false);
+        _wellFormAlternative?.SetActive(false);
+        _greatFormAlternative?.SetActive(false);
     }
 
     public void RegisterPoints() {
@@ -104,28 +156,28 @@ public class Plant : MonoBehaviour {
             case PlantTypes.LUX:
                 if(_plantState == PlantStates.WELL)
                     GameManager._instance._luxPoints++;
-                else if(_plantState == PlantStates.GREAT)
+                else if(_plantState == PlantStates.PERFECT)
                     GameManager._instance._luxPerfectPoints++;
                 break;
 
             case PlantTypes.NOX:
                 if(_plantState == PlantStates.WELL)
                     GameManager._instance._noxPoints++;
-                else if(_plantState == PlantStates.GREAT)
+                else if(_plantState == PlantStates.PERFECT)
                     GameManager._instance._noxPerrfectPoints++;
                 break;
 
             case PlantTypes.MOTH_LUX:
                 if(_plantState == PlantStates.WELL)
                     GameManager._instance._mothLuxPoints++;
-                else if(_plantState == PlantStates.GREAT)
+                else if(_plantState == PlantStates.PERFECT)
                     GameManager._instance._mothLuxPerfectPoints++;
                 break;
 
             case PlantTypes.MOTH_NOX:
                 if(_plantState == PlantStates.WELL)
                     GameManager._instance._mothNoxPoints++;
-                else if(_plantState == PlantStates.GREAT)
+                else if(_plantState == PlantStates.PERFECT)
                     GameManager._instance._mothNoxPerfectPoints++;
                 break;
         }

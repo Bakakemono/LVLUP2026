@@ -30,6 +30,8 @@ public class CycleManager : MonoBehaviour {
 
         _startDayButton.gameObject.SetActive(false);
         _dayCycle = true;
+
+        FindFirstObjectByType<PlantMenuManager>().HideMenu();
     }
 
     public void StartMoonCycle() {
@@ -37,6 +39,7 @@ public class CycleManager : MonoBehaviour {
 
         _startNightButton.gameObject.SetActive(false);
         _nightCycle = true;
+        FindFirstObjectByType<PlantMenuManager>().HideMenu();
     }
 
     void DayCycle() {
@@ -71,6 +74,8 @@ public class CycleManager : MonoBehaviour {
 
                 GameManager._instance._cycleInProgress = false;
                 GameManager._instance._starMoving = false;
+
+                PlantManager._instance.RevealPerfectPlant();
                 return;
             }
             _lastPing += -180f / (_pingPerDay + 1);

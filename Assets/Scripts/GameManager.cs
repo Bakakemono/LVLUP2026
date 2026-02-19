@@ -25,6 +25,72 @@ public class GameManager : MonoBehaviour
     public int _mothLuxPerfectPoints = 0;
 
 
+    public int GetInventory(Plant.PlantTypes type, Plant.PlantStates quality) {
+        switch(type) {
+            case Plant.PlantTypes.LUX:
+                if(quality == Plant.PlantStates.WELL)
+                    return _luxPoints;
+                else if(quality == Plant.PlantStates.PERFECT)
+                    return _luxPerfectPoints;
+                break;
+
+            case Plant.PlantTypes.NOX:
+                if(quality == Plant.PlantStates.WELL)
+                    return _noxPoints;
+                else if(quality == Plant.PlantStates.PERFECT)
+                    return _noxPerrfectPoints;
+                break;
+
+            case Plant.PlantTypes.MOTH_LUX:
+                if(quality == Plant.PlantStates.WELL)
+                    return _mothLuxPoints;
+                else if(quality == Plant.PlantStates.PERFECT)
+                    return _mothLuxPerfectPoints;
+                break;
+
+            case Plant.PlantTypes.MOTH_NOX:
+                if(quality == Plant.PlantStates.WELL)
+                    return _mothNoxPoints;
+                else if(quality == Plant.PlantStates.PERFECT)
+                    return _mothNoxPerfectPoints;
+                break;
+        }
+
+        return -1;
+    }
+
+    public void AddToInventory(Plant.PlantTypes type, Plant.PlantStates quality, int value) {
+        switch(type) {
+            case Plant.PlantTypes.LUX:
+                if(quality == Plant.PlantStates.WELL)
+                    _luxPoints += value;
+                else if(quality == Plant.PlantStates.PERFECT)
+                    _luxPerfectPoints += value;
+                break;
+
+            case Plant.PlantTypes.NOX:
+                if(quality == Plant.PlantStates.WELL)
+                    _noxPoints += value;
+                else if(quality == Plant.PlantStates.PERFECT)
+                    _noxPerrfectPoints += value;
+                break;
+
+            case Plant.PlantTypes.MOTH_LUX:
+                if(quality == Plant.PlantStates.WELL)
+                    _mothLuxPoints += value;
+                else if(quality == Plant.PlantStates.PERFECT)
+                    _mothLuxPerfectPoints += value;
+                break;
+
+            case Plant.PlantTypes.MOTH_NOX:
+                if(quality == Plant.PlantStates.WELL)
+                    _mothNoxPoints += value;
+                else if(quality == Plant.PlantStates.PERFECT)
+                    _mothNoxPerfectPoints += value;
+                break;
+        }
+    }
+
     private void Awake() {
         // Create an instance of the Gamemanager.
         if(_instance == null)

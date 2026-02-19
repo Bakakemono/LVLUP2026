@@ -2,6 +2,7 @@ using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class PlantMenuManager : MonoBehaviour {
     public static PlantMenuManager _instance;
@@ -28,17 +29,8 @@ public class PlantMenuManager : MonoBehaviour {
 
     [SerializeField] LayerMask _recoltLayerMask;
 
-    int _luxPoints = 0;
-    int _luxPerfectPoints = 0;
-
-    int _noxPoints = 0;
-    int _noxPerrfectPoints = 0;
-
-    int _mothNoxPoints = 0;
-    int _mothNoxPerfectPoints = 0;
-
-    int _mothLuxPointx = 0;
-    int _mothLuxPerfectPoints = 0;
+    [SerializeField] Button _showButton;
+    [SerializeField] Button _hideButton;
 
     private void Awake() {
         if(_instance == null) {
@@ -79,6 +71,18 @@ public class PlantMenuManager : MonoBehaviour {
         _spotsManager.UpdateSpots(_mouseWorldPos, _spotType);
     }
 
+    public void HideMenu() {
+        _hideMenu = true;
+        _showButton.transform.gameObject.SetActive(true);
+        _hideButton.transform.gameObject.SetActive(false);
+    }
+
+    public void ShowMenu() {
+        _hideMenu = false;
+        _showButton.transform.gameObject.SetActive(false);
+        _hideButton.transform.gameObject.SetActive(true);
+
+    }
 
     public void SelectPlant(int index) {
         _selectedObject = Instantiate(_plantsPrefabs[index], Vector2.one * 100, Quaternion.identity);
@@ -162,6 +166,7 @@ public class PlantMenuManager : MonoBehaviour {
         if(plant != null && !GameManager._instance._cycleInProgress) {
             plant._occupiedSpot.ReleaseSpot();
             plant.RegisterPoints();
+            PlantManager._instance.DeregisterPlant(plant);
             Destroy(plant.gameObject);
         }
         else if(plant == null) {
