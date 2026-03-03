@@ -10,8 +10,11 @@ public class SpotsManager : MonoBehaviour {
     List<Spot> _right = new List<Spot>();
     List<Spot> _top = new List<Spot>();
 
+    // NEW
+    SpotsGroup[] _spotsGroups;
+
     float _minCloseDistance = 1f;
-    int _currentClosest = -1;
+    int _closestIndex = -1;
     float _closestDist = 0f;
 
     private void Start() {
@@ -34,9 +37,13 @@ public class SpotsManager : MonoBehaviour {
                     break;
             }
         }
+
+        // NEW
+        _spotsGroups = FindObjectsByType<SpotsGroup>(FindObjectsSortMode.None);
     }
 
-    public void UpdateSpots(Vector2 plantPos, Spot.SpotType type) {
+
+    public void HighlightValideSpot(Vector2 plantPos, Spot.SpotType type) {
         List<Spot> spots = new List<Spot>();
 
         switch(type) {
@@ -57,24 +64,53 @@ public class SpotsManager : MonoBehaviour {
         foreach(var spot in spots) {
             spot.Fade();
         }
-        _currentClosest = -1;
+
+        // NEW
+        foreach(var spotsGroup in _spotsGroups) {
+            spotsGroup.GetSpot(type).Fade();
+        }
+
+
+        _closestIndex = -1;
         for(int i = 0; i < spots.Count; i++) {
             if(spots[i].IsItTaken())
                 continue;
 
             float dist = Vector2.SqrMagnitude((Vector2)spots[i].transform.position - plantPos);
             if(dist <= Mathf.Pow(_minCloseDistance, 2f)) {
-                if(_currentClosest == -1)
-                    _currentClosest = i;
+                if(_closestIndex == -1)
+                    _closestIndex = i;
                 else if(dist < _closestDist) {
                     _closestDist = dist;
-                    _currentClosest = i;
+                    _closestIndex = i;
                 }
             }
         }
 
-        if(_currentClosest != -1) {
-            spots[_currentClosest].Highlight();
+        // NEW
+        _closestIndex = -1;
+        for(int i = 0; i < spots.Count; i++) {
+            if(_spotsGroups[i].GetSpot(type).IsItTaken())
+                continue;
+
+            float dist = Vector2.SqrMagnitude((Vector2)_spotsGroups[i].GetSpot(type).transform.position - plantPos);
+            if(dist <= Mathf.Pow(_minCloseDistance, 2f)) {
+                if(_closestIndex == -1)
+                    _closestIndex = i;
+                else if(dist < _closestDist) {
+                    _closestDist = dist;
+                    _closestIndex = i;
+                }
+            }
+        }
+
+        if(_closestIndex != -1) {
+            spots[_closestIndex].Highlight();
+        }
+
+        // NEW
+        if(_closestIndex != -1) {
+            _spotsGroups[_closestIndex].GetSpot(type).Highlight();
         }
     }
 
@@ -104,6 +140,16 @@ public class SpotsManager : MonoBehaviour {
                 spot.Enable(enable);
             }
         }
+
+        // NEW
+        foreach(var spotsGroup in _spotsGroups) {
+            if(spotsGroup.GetSpot(type).IsItTaken()) {
+                spotsGroup.GetSpot(type).Enable(false);
+            }
+            else {
+                spotsGroup.GetSpot(type).Enable(enable);
+            }
+        }
     }
 
     public Spot GetClosestSpot(Spot.SpotType type) {
@@ -123,6 +169,9 @@ public class SpotsManager : MonoBehaviour {
                 spots = _top;
                 break;
         }
-        return _currentClosest == -1 ? null : spots[_currentClosest];
+        return _closestIndex == -1 ? null : spots[_closestIndex];
+
+        // NEW
+        return _spotsGroups[_closestIndex].GetSpot(type);
     }
 }

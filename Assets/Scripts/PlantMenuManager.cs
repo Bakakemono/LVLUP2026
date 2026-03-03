@@ -68,7 +68,7 @@ public class PlantMenuManager : MonoBehaviour {
         _mouseWorldPos = Camera.main.ScreenToWorldPoint(screenMousePos);
         _selectedObject.transform.position = _mouseWorldPos;
 
-        _spotsManager.UpdateSpots(_mouseWorldPos, _spotType);
+        _spotsManager.HighlightValideSpot(_mouseWorldPos, _spotType);
     }
 
     public void HideMenu() {
