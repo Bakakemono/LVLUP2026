@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     public bool _cycleInProgress = false;
     public bool _starMoving = false;
+    bool _nextCycleIsDay = true;
 
 
     public int _luxPoints = 0;
@@ -112,7 +113,15 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void PingAstreEffect(bool sunLight) {
-        PlantManager._instance.LightPlants(sunLight);
+    public void PingAstreEffect(CycleManager.RayType rayType, CycleManager.Periode _periode) {
+        PlantManager._instance.LightPlants(true);
+    }
+
+    public void CycleFinished() {
+        _nextCycleIsDay = !_nextCycleIsDay;
+    }
+
+    public void StartCycle() {
+        CycleManager._instance.BeginCycle(_nextCycleIsDay);
     }
 }
