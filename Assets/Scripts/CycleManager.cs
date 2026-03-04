@@ -65,10 +65,10 @@ public class CycleManager : MonoBehaviour {
 
     private void FixedUpdate() {
         if(!_cycleBegin)
-            return;
+            return;                                                                         
 
-        CycleUpdate();
         PlayVisual();
+        CycleUpdate();
     }
 
     //public void StartSunCycle() {
@@ -132,9 +132,10 @@ public class CycleManager : MonoBehaviour {
     //    }
     //}
 
-    public void BeginCycle(bool dayTime) {
-        _nightCycle = !dayTime;
+    public void BeginCycle(bool nightCycle) {
+        _nightCycle = nightCycle;
         _isCycleFinish = false;
+        _cycleBegin = true;
 
         _cycleStartTime = Time.time;
 
@@ -158,6 +159,7 @@ public class CycleManager : MonoBehaviour {
     void CycleUpdate() {
         if(!_cycleBegin)
             return;
+
         if(Time.time > _cycleStartTime + _cycleTotalDuration) {
             GameManager._instance.CycleFinished();
 
@@ -170,6 +172,8 @@ public class CycleManager : MonoBehaviour {
 
             return;
         }
+
+        return;
 
         if(_isCycleFinish)
             return;
@@ -194,13 +198,16 @@ public class CycleManager : MonoBehaviour {
             float onePeriodeLength = _cycleTotalDuration * ((float)_pastPeriodeCount + 1f) / _pointsPeriodes.Length;
 
             _nextPing = _cycleStartTime + onePeriodeLength * _pastPeriodeCount + (onePeriodeLength / ((_pointsPeriodes.Length * _hitNumber) + 1f));
+            
         }
     }
 
 
     void PlayVisual() {
+        Debug.Log("Visual playing");
+
         Transform _celestialBody = _nightCycle ? _moon : _sun;
-        float progression = Time.time - _cycleStartTime / _cycleTotalDuration;
+        float progression = (Time.time - _cycleStartTime) / _cycleTotalDuration;
 
         progression = Mathf.Clamp(progression, 0f, 1f);
 
@@ -241,10 +248,10 @@ public class CycleManager : MonoBehaviour {
         CalculateCelestialArc();
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(_cycleStartTransform.position, 1f);
+        Gizmos.DrawSphere(_cycleStartTransform.position, 0.5f);
 
         Gizmos.color = Color.blueViolet;
-        Gizmos.DrawSphere(new Vector2(-_cycleStartTransform.position.x, _cycleStartTransform.position.y), 1f);
+        Gizmos.DrawSphere(new Vector2(-_cycleStartTransform.position.x, _cycleStartTransform.position.y), 0.5f);
 
         Gizmos.color = Color.green;
         Gizmos.DrawLine(_celestialPivotPoint, _cycleStartTransform.position);
@@ -261,12 +268,12 @@ public class CycleManager : MonoBehaviour {
             pos = newPos;
         }
 
-        {
-            float angle = Mathf.Deg2Rad * (_startingAngle + (_totalArcAngle * DEBUG_cycleProgression / 100f));
-            Vector2 sunPos = _celestialPivotPoint + new Vector2(-Mathf.Cos(angle), Mathf.Sin(angle)) * _circleRadius;
+        //{
+        //    float angle = Mathf.Deg2Rad * (_startingAngle + (_totalArcAngle * DEBUG_cycleProgression / 100f));
+        //    Vector2 sunPos = _celestialPivotPoint + new Vector2(-Mathf.Cos(angle), Mathf.Sin(angle)) * _circleRadius;
 
-            Gizmos.color = new Color((100f - DEBUG_cycleProgression) / 100f, (100f - DEBUG_cycleProgression) / 100f, 0f, 1f);
-            Gizmos.DrawSphere(sunPos, 1f);
-        }
-    }
+        //    Gizmos.color = new Color((100f - DEBUG_cycleProgression) / 100f, (100f - DEBUG_cycleProgression) / 100f, 0f, 1f);
+        //    _sun.position = sunPos;
+        //}
+    }   
 }

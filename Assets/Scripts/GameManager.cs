@@ -122,6 +122,6 @@ public class GameManager : MonoBehaviour
     }
 
     public void StartCycle() {
-        CycleManager._instance.BeginCycle(_nextCycleIsDay);
+        CycleManager._instance.BeginCycle(!_nextCycleIsDay);
     }
 }
