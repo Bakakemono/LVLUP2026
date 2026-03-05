@@ -139,11 +139,12 @@ public class CycleManager : MonoBehaviour {
 
         _cycleStartTime = Time.time;
 
-        // Calculate first threshold .
-        int periodNumber = _pointsPeriodes.Length;
-        float onePeriodeLength = _cycleTotalDuration * ((float)_pastPeriodeCount + 1f) / periodNumber;
+        // Calculate first threshold . 
+        float onePeriodeLength = _cycleTotalDuration * ((float)_pastPeriodeCount + 1f) / _pointsPeriodes.Length;
 
-        _nextPing = _cycleStartTime + onePeriodeLength * _pastPeriodeCount + (onePeriodeLength / ((periodNumber * _hitNumber) + 1f));
+        _nextPing =
+            _cycleStartTime + onePeriodeLength * _pastPeriodeCount +
+                ((onePeriodeLength / (_pointsPeriodes[_pastPeriodeCount] + 1) * (_hitNumber + 1)));
 
         GameManager._instance._cycleInProgress = true;
         GameManager._instance._starMoving = true;
@@ -173,8 +174,6 @@ public class CycleManager : MonoBehaviour {
             return;
         }
 
-        return;
-
         if(_isCycleFinish)
             return;
 
@@ -182,7 +181,8 @@ public class CycleManager : MonoBehaviour {
             _hitNumber++;
 
             GameManager._instance.PingAstreEffect(_nightCycle ? RayType.DARKNESS : RayType.LIGHT, (Periode)_pastPeriodeCount);
-
+            Debug.DrawLine(_sun.position, Vector2.zero, Color.cyan, 10f);
+            Debug.Log("Ping");
             if(_hitNumber == _pointsPeriodes[_pastPeriodeCount]) {
 
                 _hitNumber = 0;
@@ -195,10 +195,11 @@ public class CycleManager : MonoBehaviour {
             }
 
             // Set Cycle Time
-            float onePeriodeLength = _cycleTotalDuration * ((float)_pastPeriodeCount + 1f) / _pointsPeriodes.Length;
+            float onePeriodeLength = _cycleTotalDuration / _pointsPeriodes.Length;
 
-            _nextPing = _cycleStartTime + onePeriodeLength * _pastPeriodeCount + (onePeriodeLength / ((_pointsPeriodes.Length * _hitNumber) + 1f));
-            
+            _nextPing =
+                _cycleStartTime + onePeriodeLength * _pastPeriodeCount +
+                    (onePeriodeLength / (_pointsPeriodes[_pastPeriodeCount] + 1) * (_hitNumber + 1));
         }
     }
 

@@ -10,9 +10,8 @@ public class PlantMenuManager : MonoBehaviour {
     SpotsManager _spotsManager;
 
     [SerializeField] GameObject[] _plantsPrefabs;
-    [SerializeField] GameObject[] _leftObstaclesPrefabs;
-    [SerializeField] GameObject[] _rightObstaclesPrefabs;
     [SerializeField] GameObject[] _topObstaclesPrefabs;
+    [SerializeField] GameObject[] _sideObstaclesPrefabs;
 
     GameObject _selectedObject;
     bool _selectedObjectInHand = false;
@@ -94,27 +93,18 @@ public class PlantMenuManager : MonoBehaviour {
 
     }
 
-    public void SelectLeftObstacle(int index) {
-        _selectedObject = Instantiate(_leftObstaclesPrefabs[index], Vector2.one * 100, Quaternion.identity);
-        _spotType = Spot.SpotType.LEFT;
-        _selectedObjectInHand = true;
-
-        _spotsManager.EnableAllSpots(true, _spotType);
-        _hideMenu = true;
-    }
-
-    public void SelectRightObstacle(int index) {
-        _selectedObject = Instantiate(_rightObstaclesPrefabs[index], Vector2.one * 100, Quaternion.identity);
-        _spotType = Spot.SpotType.RIGHT;
-        _selectedObjectInHand = true;
-
-        _spotsManager.EnableAllSpots(true, _spotType);
-        _hideMenu = true;
-    }
-
     public void SelectTopObstacle(int index) {
         _selectedObject = Instantiate(_topObstaclesPrefabs[index], Vector2.one * 100, Quaternion.identity);
         _spotType = Spot.SpotType.TOP;
+        _selectedObjectInHand = true;
+
+        _spotsManager.EnableAllSpots(true, _spotType);
+        _hideMenu = true;
+    }
+
+    public void SelectSideObstacle(int index) {
+        _selectedObject = Instantiate(_sideObstaclesPrefabs[index], Vector2.one * 100, Quaternion.identity);
+        _spotType = Spot.SpotType.SIDE;
         _selectedObjectInHand = true;
 
         _spotsManager.EnableAllSpots(true, _spotType);
@@ -142,6 +132,12 @@ public class PlantMenuManager : MonoBehaviour {
             }
             else {
                 _selectedObject.GetComponent<Obstacle>()._occupiedSpot = spot;
+                if(spot._spotType == Spot.SpotType.SIDE) {
+                    if(spot._spotSubType == Spot.SpotSubType.RIGHT) {
+                        Vector2 scale = _selectedObject.transform.localScale;
+                        _selectedObject.transform.localScale = new Vector2(-scale.x, scale.y);
+                    }
+                }
             }
 
                 _selectedObject.transform.position = spot.transform.position;

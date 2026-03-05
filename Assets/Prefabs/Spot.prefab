@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spot
   _spotType: 3
+  _spotSubType: 0
   _fadeAlpha: 0.3
   _highlightAlpha: 0.8
 --- !u!212 &1879124293118840719
@@ -152,7 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61e96d4f77eb8f498f20945e2a4f4fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spot
-  _spotType: 0
+  _spotType: 1
+  _spotSubType: 0
   _fadeAlpha: 0.3
   _highlightAlpha: 0.8
 --- !u!212 &3071517586955367323
@@ -259,7 +261,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61e96d4f77eb8f498f20945e2a4f4fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spot
-  _spotType: 1
+  _spotType: 5
+  _spotSubType: 1
   _fadeAlpha: 0.3
   _highlightAlpha: 0.8
 --- !u!212 &2107612309800846067
@@ -330,6 +333,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2752474338677099959}
+  - component: {fileID: 4403061631047294730}
   m_Layer: 0
   m_Name: Spot
   m_TagString: Untagged
@@ -356,6 +360,22 @@ Transform:
   - {fileID: 4884451631885579240}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4403061631047294730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8179003071848482199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 504b756e76881d344b19eeca6b623e38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpotsGroup
+  _plantSpot: {fileID: 4121758341283072263}
+  _leftSpot: {fileID: 5963108602866638322}
+  _topSpot: {fileID: 8708909011055302485}
+  _rightSpot: {fileID: 6262618260875777493}
 --- !u!1 &8272175900493357313
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,6 +422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spot
   _spotType: 2
+  _spotSubType: 0
   _fadeAlpha: 0.3
   _highlightAlpha: 0.8
 --- !u!212 &4829220206822847451

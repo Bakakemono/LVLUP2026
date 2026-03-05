@@ -1,17 +1,31 @@
 using UnityEditor;
 using UnityEngine;
 
-public class Spot : MonoBehaviour
-{
+public class Spot : MonoBehaviour {
+    public SpotsGroup _spotGroup;
+
     public enum SpotType {
         NONE,
         PLANT,
-        LEFT,
-        RIGHT,
-        TOP
+        TOP,
+        SIDE
     }
 
     [SerializeField] public SpotType _spotType;
+
+    public enum SpotSubType {
+        NONE,
+        LEFT,
+        RIGHT
+    }
+    public SpotSubType _spotSubType;
+
+    public enum ProtectionType {
+        NONE,
+        LIGHT,
+        DARKNESS,
+        ALL
+    }
 
 
     bool _enable = false;
@@ -25,6 +39,7 @@ public class Spot : MonoBehaviour
     private void Start() {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         Enable(false);
+        _spotGroup = GetComponentInParent<SpotsGroup>();
     }
     public void Highlight() {
         if(!_enable)
