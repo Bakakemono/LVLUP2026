@@ -27,6 +27,7 @@ public class Spot : MonoBehaviour {
         ALL
     }
 
+    private ProtectionType _protectionType = ProtectionType.NONE;
 
     bool _enable = false;
 
@@ -36,6 +37,8 @@ public class Spot : MonoBehaviour {
     [SerializeField] float _highlightAlpha;
 
     bool _occupied = false;
+
+
     private void Start() {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         Enable(false);
@@ -65,9 +68,19 @@ public class Spot : MonoBehaviour {
 
     public void ReleaseSpot() {
         _occupied = false;
+        _protectionType = ProtectionType.NONE;
+        
     }
 
     public bool IsItTaken() {
         return _occupied;
+    }
+
+    public void SetProtectionType(ProtectionType protectionType) {
+        _protectionType = protectionType;
+    }
+
+    public ProtectionType GetProtectionType() {
+        return _protectionType;
     }
 }

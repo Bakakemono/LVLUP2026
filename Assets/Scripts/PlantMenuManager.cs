@@ -132,7 +132,7 @@ public class PlantMenuManager : MonoBehaviour {
             }
             else {
                 _selectedObject.GetComponent<Obstacle>()._occupiedSpot = spot;
-                if(spot._spotType == Spot.SpotType.SIDE) {
+                if(_spotType == Spot.SpotType.SIDE) {
                     if(spot._spotSubType == Spot.SpotSubType.RIGHT) {
                         Vector2 scale = _selectedObject.transform.localScale;
                         _selectedObject.transform.localScale = new Vector2(-scale.x, scale.y);
@@ -140,8 +140,9 @@ public class PlantMenuManager : MonoBehaviour {
                 }
             }
 
-                _selectedObject.transform.position = spot.transform.position;
+            _selectedObject.transform.position = spot.transform.position;
             spot.OccupiedSpot();
+
             _selectedObject = null;
         }
         _spotType = Spot.SpotType.NONE;

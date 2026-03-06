@@ -49,10 +49,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fe2e711139b5eb498aba8f6c6bb7c1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Plant
+  _mothPlant: 0
   _babyForm: {fileID: 6625280299856438539}
   _wellForm: {fileID: 9203373403853773808}
   _greatForm: {fileID: 7035953217841609467}
   _deadForm: {fileID: 3412143486542267379}
+  _wellFormAlternative: {fileID: 0}
+  _greatFormAlternative: {fileID: 0}
   _transform: {fileID: 0}
   _minLightNecessary: 0
   _maxLightNecessary: 2
@@ -62,6 +65,7 @@ MonoBehaviour:
   _maxDarknessNecessary: 9
   _perfectDarknessValue: 8
   _darknessAbsorbed: 0
+  _occupiedSpot: {fileID: 0}
 --- !u!61 &4577498631277671260
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -187,7 +191,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_MaskInteraction: 0
   m_Sprite: {fileID: -1120947488614165044, guid: 15fc28dec56e39b4b813d0c1bd8cef04, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -278,7 +282,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 4079614473620337719, guid: b241a45d96b38534d831a112ad8f675e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -369,7 +373,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_MaskInteraction: 0
   m_Sprite: {fileID: -4222850375303868405, guid: 12aa1288113bca34aac1fdb9ccf2903e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -460,7 +464,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 9166502952437917217, guid: bd04a349d9833604dbb04730ba74df3f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

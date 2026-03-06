@@ -184,6 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a1cf8cd834250741b1b8ca34617afbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
+  _occupiedSpot: {fileID: 0}
 --- !u!1 &2911788070749167823
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,8 +211,8 @@ Transform:
   m_GameObject: {fileID: 2911788070749167823}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.2244, z: 0}
-  m_LocalScale: {x: 1, y: 0.82124996, z: 1}
+  m_LocalPosition: {x: 0, y: 1.3682, z: 0}
+  m_LocalScale: {x: 1, y: 0.97465944, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1391236050024235148}

@@ -62,6 +62,9 @@ public class SpotsManager : MonoBehaviour {
     }
 
     public Spot GetClosestSpot(Spot.SpotType type) {
+        if(_closestIndex == -1)
+            return null;
+
         List<Spot> spots = GetSpots(type);
 
         return spots[_closestIndex];
