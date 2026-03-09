@@ -92,6 +92,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a1cf8cd834250741b1b8ca34617afbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
+  _occupiedSpot: {fileID: 0}
+  _protectionType: 2
 --- !u!1 &6678114847740036005
 GameObject:
   m_ObjectHideFlags: 0

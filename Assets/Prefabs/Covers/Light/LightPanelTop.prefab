@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
   _occupiedSpot: {fileID: 0}
+  _protectionType: 1
 --- !u!1 &2911788070749167823
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using System.Linq;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Plant : MonoBehaviour {
     public enum PlantStates {
@@ -48,20 +49,30 @@ public class Plant : MonoBehaviour {
 
     public Spot _occupiedSpot;
 
+    public SpotsGroup _spotGroup;
+
+    VisualEffect _absorbtionEffect;
+
+    
+    
+
     private void Start() {
         _transform = transform;
         _sunTransform = FindFirstObjectByType<Sun>().transform;
+
+        _absorbtionEffect = GetComponentInChildren<VisualEffect>();
     }
 
-    public void AddLightPoint() {
-        Debug.Log("Add Light Point");
-        _lightAborbed++;
-        UpdateState();
-    }
-
-    public void AddDarknessPoint() {
-        Debug.Log("Add Darkness Point");
-        _darknessAbsorbed++;
+    public void AddEnergy(CycleManager.RayType rayType) {
+        switch(rayType) {
+            case CycleManager.RayType.LIGHT:
+                _lightAborbed++;
+                break;
+            case CycleManager.RayType.DARKNESS:
+                _darknessAbsorbed++;
+                break;
+        }
+        PlayEffect(rayType);
         UpdateState();
     }
 
@@ -144,6 +155,10 @@ public class Plant : MonoBehaviour {
         _wellForm.SetActive(false);
         _greatForm.SetActive(false);
         _deadForm.SetActive(false);
+
+        if(!_mothPlant)
+            return;
+
         _wellFormAlternative?.SetActive(false);
         _greatFormAlternative?.SetActive(false);
     }
@@ -181,5 +196,13 @@ public class Plant : MonoBehaviour {
                     GameManager._instance._mothNoxPerfectPoints++;
                 break;
         }
+    }
+
+    void PlayEffect(CycleManager.RayType rayType) {
+        _absorbtionEffect.SetVector4(
+            "ParticleColor",
+            rayType == CycleManager.RayType.LIGHT ? GameManager._instance._lightColorEffect : GameManager._instance._darkColorEffect);
+
+        _absorbtionEffect.Play();
     }
 }

@@ -25,7 +25,8 @@ public class GameManager : MonoBehaviour
     public int _mothLuxPoints = 0;
     public int _mothLuxPerfectPoints = 0;
 
-
+    public Color _lightColorEffect;
+    public Color _darkColorEffect;
     public int GetInventory(Plant.PlantTypes type, Plant.PlantStates quality) {
         switch(type) {
             case Plant.PlantTypes.LUX:
@@ -114,7 +115,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void PingAstreEffect(CycleManager.RayType rayType, CycleManager.Periode _periode) {
-        PlantManager._instance.LightPlants(true);
+        PlantManager._instance.LightPlants(rayType, _periode);
     }
 
     public void CycleFinished() {

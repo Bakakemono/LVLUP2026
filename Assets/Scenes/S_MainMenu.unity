@@ -738,6 +738,8 @@ MonoBehaviour:
   _mothNoxPerfectPoints: 0
   _mothLuxPoints: 0
   _mothLuxPerfectPoints: 0
+  _lightColorEffect: {r: 1, g: 0.9705531, b: 0.2396226, a: 0}
+  _darkColorEffect: {r: 0.19215687, g: 0, b: 0.25490198, a: 0}
 --- !u!4 &517095216
 Transform:
   m_ObjectHideFlags: 0

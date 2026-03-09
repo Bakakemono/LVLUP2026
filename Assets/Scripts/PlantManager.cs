@@ -46,43 +46,38 @@ public class PlantManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
-    public void LightPlants(bool sunLight) {
-        Transform star = sunLight ? _sunTransform : _moonTransform;
-
+    public void LightPlants(CycleManager.RayType rayType, CycleManager.Periode _periode) {
         foreach(var plant in _plantedPlants) {
-            //Debug.DrawRay(star.position, plant.transform.position - star.position, Color.red, 1f);
-
-            RaycastHit2D[] hits =
-                Physics2D.RaycastAll(
-                    star.position,
-                    plant.transform.position - star.position,
-                    (plant.transform.position - star.position).magnitude,
-                    _hitLayerMask
-                    );
-
-            if(hits.Length > 0) {
-                bool hitObstacle = false;
-                foreach(var hit in hits) {
-                    int layerConvertedValue = 1 << hit.transform.gameObject.layer;
-                    if(layerConvertedValue == _stopAllLayerMask.value ||
-                        (sunLight && layerConvertedValue == _stopLightLayerMask) ||
-                        (!sunLight && layerConvertedValue == _stopDarklayerMask)) {
-                        hitObstacle = true;
-                        Debug.Log("Block");
-                        break;
-                    }
-                }
-
-                if(hitObstacle)
-                    return;
-
-                if(sunLight)
-                    plant.AddLightPoint();
-                else
-                    plant.AddDarknessPoint();
+            Spot.ProtectionType protectionType = Spot.ProtectionType.NONE;
+            switch(_periode) {
+                case CycleManager.Periode.MORNING:
+                    protectionType = plant._spotGroup.GetProtectionType(Spot.SpotType.SIDE, Spot.SpotSubType.LEFT);
+                    break;
+                case CycleManager.Periode.AFTERNOON:
+                    protectionType = plant._spotGroup.GetProtectionType(Spot.SpotType.TOP);
+                    break;
+                case CycleManager.Periode.EVENING:
+                    protectionType = plant._spotGroup.GetProtectionType(Spot.SpotType.SIDE, Spot.SpotSubType.RIGHT);
+                    break;
             }
+
+            switch(protectionType) {
+                case Spot.ProtectionType.LIGHT:
+                    if(rayType == CycleManager.RayType.LIGHT)
+                        continue;
+                    break;
+                case Spot.ProtectionType.DARKNESS:
+                    if(rayType == CycleManager.RayType.DARKNESS)
+                        continue;
+                    break;
+                case Spot.ProtectionType.ALL:
+                    continue;
+            }
+
+            plant.AddEnergy(rayType);
         }
     }
+
     public void RegisterNewPlant(Plant plant) {
         _plantedPlants.Add(plant);
     }

@@ -128,10 +128,15 @@ public class PlantMenuManager : MonoBehaviour {
         else {
             if(_spotType == Spot.SpotType.PLANT) {
                 PlantManager._instance.RegisterNewPlant(_selectedObject.GetComponent<Plant>());
-                _selectedObject.GetComponent<Plant>()._occupiedSpot = spot;
+                Plant newPlant = _selectedObject.GetComponent<Plant>();
+                newPlant._spotGroup = spot._spotGroup;
+                newPlant._occupiedSpot = spot;
+                
             }
             else {
-                _selectedObject.GetComponent<Obstacle>()._occupiedSpot = spot;
+                Obstacle obstacle = _selectedObject.GetComponent<Obstacle>();
+                obstacle._occupiedSpot = spot;
+                spot.SetProtectionType(obstacle._protectionType);
                 if(_spotType == Spot.SpotType.SIDE) {
                     if(spot._spotSubType == Spot.SpotSubType.RIGHT) {
                         Vector2 scale = _selectedObject.transform.localScale;
@@ -139,9 +144,10 @@ public class PlantMenuManager : MonoBehaviour {
                     }
                 }
             }
-
+            
             _selectedObject.transform.position = spot.transform.position;
             spot.OccupiedSpot();
+
 
             _selectedObject = null;
         }

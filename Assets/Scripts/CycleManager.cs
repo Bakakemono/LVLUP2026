@@ -17,7 +17,6 @@ public class CycleManager : MonoBehaviour {
         EVENING
     }
 
-
     [SerializeField] Transform _sunMoonPivotTransform;
     bool _nightCycle = false;
 
@@ -51,8 +50,11 @@ public class CycleManager : MonoBehaviour {
     public float _totalArcAngle;
 
     bool _isCycleFinish = false;
-
+    
+    [Header("Debug")]
+    [SerializeField] bool DEBUG_displayGizmos = false;
     [SerializeField, Range(0, 100f)]float DEBUG_cycleProgression = 0f;
+
 
     private void Awake() {
         if(_instance == null)
@@ -70,67 +72,6 @@ public class CycleManager : MonoBehaviour {
         PlayVisual();
         CycleUpdate();
     }
-
-    //public void StartSunCycle() {
-    //    GameManager._instance._cycleInProgress = true;
-    //    GameManager._instance._starMoving = true;
-
-    //    _startDayButton.gameObject.SetActive(false);
-    //    _dayCycle = true;
-
-    //    FindFirstObjectByType<PlantMenuManager>().HideMenu();
-    //}
-
-    //public void StartMoonCycle() {
-    //    GameManager._instance._starMoving = true;
-
-    //    _startNightButton.gameObject.SetActive(false);
-    //    _nightCycle = true;
-    //    FindFirstObjectByType<PlantMenuManager>().HideMenu();
-    //}
-
-
-    
-    //void DayCycle() {
-    //    _currentRotation += -_degPerSecond * Time.fixedDeltaTime;
-    //    _sunMoonPivotTransform.rotation = Quaternion.Euler(0f, 0f, _currentRotation);
-
-    //    if(_currentRotation <= _lastPing + -180f / (_pingPerDay + 1)) {
-    //        if((_lastPing + -180f / (float)(_pingPerDay + 1)) <= -180f) {
-    //            _dayCycle = false;
-    //            _startNightButton.gameObject.SetActive(true);
-    //            _lastPing = -180f;
-    //            _currentRotation = -180f;
-
-    //            GameManager._instance._starMoving = false;
-    //            return;
-    //        }
-    //        _lastPing += -180f / (_pingPerDay + 1);
-    //        GameManager._instance.PingAstreEffect(true);
-    //    }
-    //}
-
-    //void NightCycle() {
-    //    _currentRotation += -_degPerSecond * Time.fixedDeltaTime;
-    //    _sunMoonPivotTransform.rotation = Quaternion.Euler(0f, 0f, _currentRotation);
-
-    //    if(_currentRotation <= _lastPing + -180f / (_pingPerDay + 1)) {
-    //        if((_lastPing + -180f / (float)(_pingPerDay + 1)) <= -360f) {
-    //            _nightCycle = false;
-    //            _startDayButton.gameObject.SetActive(true);
-    //            _lastPing = 0f;
-    //            _currentRotation = 0f;
-
-    //            GameManager._instance._cycleInProgress = false;
-    //            GameManager._instance._starMoving = false;
-
-    //            PlantManager._instance.RevealPerfectPlant();
-    //            return;
-    //        }
-    //        _lastPing += -180f / (_pingPerDay + 1);
-    //        GameManager._instance.PingAstreEffect(false);
-    //    }
-    //}
 
     public void BeginCycle(bool nightCycle) {
         _nightCycle = nightCycle;
@@ -181,8 +122,6 @@ public class CycleManager : MonoBehaviour {
             _hitNumber++;
 
             GameManager._instance.PingAstreEffect(_nightCycle ? RayType.DARKNESS : RayType.LIGHT, (Periode)_pastPeriodeCount);
-            Debug.DrawLine(_sun.position, Vector2.zero, Color.cyan, 10f);
-            Debug.Log("Ping");
             if(_hitNumber == _pointsPeriodes[_pastPeriodeCount]) {
 
                 _hitNumber = 0;
@@ -205,8 +144,6 @@ public class CycleManager : MonoBehaviour {
 
 
     void PlayVisual() {
-        Debug.Log("Visual playing");
-
         Transform _celestialBody = _nightCycle ? _moon : _sun;
         float progression = (Time.time - _cycleStartTime) / _cycleTotalDuration;
 
@@ -246,6 +183,9 @@ public class CycleManager : MonoBehaviour {
     }
 
     private void OnDrawGizmos() {
+        if(!DEBUG_displayGizmos)
+            return;
+
         CalculateCelestialArc();
 
         Gizmos.color = Color.yellow;
@@ -269,12 +209,12 @@ public class CycleManager : MonoBehaviour {
             pos = newPos;
         }
 
-        //{
-        //    float angle = Mathf.Deg2Rad * (_startingAngle + (_totalArcAngle * DEBUG_cycleProgression / 100f));
-        //    Vector2 sunPos = _celestialPivotPoint + new Vector2(-Mathf.Cos(angle), Mathf.Sin(angle)) * _circleRadius;
+        {
+            float angle = Mathf.Deg2Rad * (_startingAngle + (_totalArcAngle * DEBUG_cycleProgression / 100f));
+            Vector2 sunPos = _celestialPivotPoint + new Vector2(-Mathf.Cos(angle), Mathf.Sin(angle)) * _circleRadius;
 
-        //    Gizmos.color = new Color((100f - DEBUG_cycleProgression) / 100f, (100f - DEBUG_cycleProgression) / 100f, 0f, 1f);
-        //    _sun.position = sunPos;
-        //}
+            Gizmos.color = new Color((100f - DEBUG_cycleProgression) / 100f, (100f - DEBUG_cycleProgression) / 100f, 0f, 1f);
+            _sun.position = sunPos;
+        }
     }   
 }

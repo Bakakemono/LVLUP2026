@@ -38,7 +38,6 @@ public class Spot : MonoBehaviour {
 
     bool _occupied = false;
 
-
     private void Start() {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         Enable(false);

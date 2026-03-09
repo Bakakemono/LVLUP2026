@@ -25,4 +25,20 @@ public class SpotsGroup : MonoBehaviour {
         Debug.LogWarning("Invalid Type");
         return null;
     }
+
+    public Spot.ProtectionType GetProtectionType(Spot.SpotType spotType, Spot.SpotSubType subType = Spot.SpotSubType.NONE) {
+        switch(spotType) {
+            case Spot.SpotType.TOP:
+                return _topSpot.GetProtectionType();
+            case Spot.SpotType.SIDE:
+                switch(subType) {
+                    case Spot.SpotSubType.LEFT:
+                        return _leftSpot.GetProtectionType();
+                    case Spot.SpotSubType.RIGHT:
+                        return _rightSpot.GetProtectionType();
+                }
+                break;
+        }
+        return Spot.ProtectionType.NONE;
+    }
 }
