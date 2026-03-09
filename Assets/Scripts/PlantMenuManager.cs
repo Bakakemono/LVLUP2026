@@ -131,6 +131,7 @@ public class PlantMenuManager : MonoBehaviour {
                 Plant newPlant = _selectedObject.GetComponent<Plant>();
                 newPlant._spotGroup = spot._spotGroup;
                 newPlant._occupiedSpot = spot;
+                spot._spotGroup.PlantSet(true);
                 
             }
             else {
@@ -169,10 +170,11 @@ public class PlantMenuManager : MonoBehaviour {
         if(plant != null && !GameManager._instance._cycleInProgress) {
             plant._occupiedSpot.ReleaseSpot();
             plant.RegisterPoints();
+            plant._spotGroup.PlantSet(false);
             PlantManager._instance.DeregisterPlant(plant);
             Destroy(plant.gameObject);
         }
-        else if(plant == null) {
+        else if(plant == null && !GameManager._instance._cycleInProgress) {
             Obstacle obstacle = hit.transform.GetComponent<Obstacle>();
             obstacle._occupiedSpot.ReleaseSpot();
             Destroy(obstacle.gameObject);

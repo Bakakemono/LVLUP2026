@@ -6,7 +6,7 @@ public class SpotsGroup : MonoBehaviour {
     [SerializeField] Spot _topSpot;
     [SerializeField] Spot _rightSpot;
 
-
+    public bool _plantInPlace;
 
     public Spot[] GetSpot(Spot.SpotType spotType) {
         switch(spotType) {
@@ -40,5 +40,13 @@ public class SpotsGroup : MonoBehaviour {
                 break;
         }
         return Spot.ProtectionType.NONE;
+    }
+
+    public bool IsPlantInSpot() {
+        return _plantInPlace;
+    }
+
+    public void PlantSet(bool isPlantSetup) {
+        _plantInPlace = isPlantSetup;
     }
 }

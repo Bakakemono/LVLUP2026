@@ -68,11 +68,10 @@ public class Spot : MonoBehaviour {
     public void ReleaseSpot() {
         _occupied = false;
         _protectionType = ProtectionType.NONE;
-        
     }
 
     public bool IsItTaken() {
-        return _occupied;
+        return _occupied || (_spotType != SpotType.PLANT ? !_spotGroup.IsPlantInSpot() : false);
     }
 
     public void SetProtectionType(ProtectionType protectionType) {
