@@ -38,7 +38,6 @@ public class CycleManager : MonoBehaviour {
 
     int _pastPeriodeCount = 0;
     float _cycleStartTime;
-    float _cycleLastHit;
     int _hitNumber = 0;
     float _nextPing = 0f;
 

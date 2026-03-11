@@ -53,9 +53,6 @@ public class Plant : MonoBehaviour {
 
     VisualEffect _absorbtionEffect;
 
-    
-    
-
     private void Start() {
         _transform = transform;
         _sunTransform = FindFirstObjectByType<Sun>().transform;
@@ -72,14 +69,15 @@ public class Plant : MonoBehaviour {
                 _darknessAbsorbed++;
                 break;
         }
+
+        if(_plantState == PlantStates.DEAD)
+            return;
+
         PlayEffect(rayType);
         UpdateState();
     }
 
     public void UpdateState() {
-        if(_plantState == PlantStates.DEAD)
-            return;
-
         if(_mothPlant) {
             MothSpecialUpdate();
             return;
