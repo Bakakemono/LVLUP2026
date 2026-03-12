@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.VFX;
@@ -30,6 +31,7 @@ public class Plant : MonoBehaviour {
     [SerializeField] GameObject _deadForm;
     [SerializeField] GameObject _wellFormAlternative;
     [SerializeField] GameObject _greatFormAlternative;
+    
 
     public Transform _transform;
     Transform _sunTransform;
@@ -53,6 +55,8 @@ public class Plant : MonoBehaviour {
 
     VisualEffect _absorbtionEffect;
 
+    bool _recolted = false;
+
     private void Start() {
         _transform = transform;
         _sunTransform = FindFirstObjectByType<Sun>().transform;
@@ -61,6 +65,9 @@ public class Plant : MonoBehaviour {
     }
 
     public void AddEnergy(CycleManager.RayType rayType) {
+        if(_recolted)
+            return;
+
         switch(rayType) {
             case CycleManager.RayType.LIGHT:
                 _lightAborbed++;
@@ -202,5 +209,67 @@ public class Plant : MonoBehaviour {
             rayType == CycleManager.RayType.LIGHT ? GameManager._instance._lightColorEffect : GameManager._instance._darkColorEffect);
 
         _absorbtionEffect.Play();
+    }
+
+    public void Recolt() {
+        if(_recolted)
+            return;
+
+        _recolted = true;
+
+        _spotGroup.PlantSet(false);
+        _occupiedSpot.ReleaseSpot();
+        RegisterPoints();
+
+        StartCoroutine(FadeOut());
+    }
+
+    private IEnumerator FadeOut() {
+        bool fadeOutFinished = false;
+        float fadeOutTime = 0.5f;
+        float fadeOutScaleIncrease = 0.3f;
+        float startingTime = Time.time;
+        
+        SpriteRenderer activePlanteRenderer = GetActiveForm();
+
+        float currentHeight = activePlanteRenderer.transform.localPosition.y;
+
+        while(!fadeOutFinished) {
+            if(Time.time >= startingTime + fadeOutTime) {
+                fadeOutFinished = true;
+                break;
+            }
+            activePlanteRenderer.transform.localScale =
+                Vector3.one * (1 + (fadeOutScaleIncrease * (Time.time - startingTime) / fadeOutTime));
+
+            activePlanteRenderer.color =
+                new Color(1f, 1f, 1f, 1f - (Time.time - startingTime) / fadeOutTime);
+
+            activePlanteRenderer.transform.localPosition =
+                new Vector2(activePlanteRenderer.transform.localPosition.x, currentHeight + 0.5f * (Time.time - startingTime) / fadeOutTime);
+
+            yield return new WaitForFixedUpdate();
+        }
+        Destroy(gameObject);
+    }
+
+    SpriteRenderer GetActiveForm() {
+        switch(_plantState) {
+            case PlantStates.BABY:
+                return _babyForm.GetComponent<SpriteRenderer>();
+            case PlantStates.WELL:
+                if(_planteType == PlantTypes.MOTH_NOX)
+                    return _wellFormAlternative.GetComponent<SpriteRenderer>();
+                else
+                    return _wellForm.GetComponent<SpriteRenderer>();
+            case PlantStates.PERFECT:
+                if(_planteType == PlantTypes.MOTH_NOX)
+                    return _greatFormAlternative.GetComponent<SpriteRenderer>();
+                else
+                    return _greatForm.GetComponent<SpriteRenderer>();
+            case PlantStates.DEAD:
+                return _deadForm.GetComponent<SpriteRenderer>();
+        }
+        return null;
     }
 }
