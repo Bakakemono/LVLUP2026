@@ -58,12 +58,12 @@ MonoBehaviour:
   _wellFormAlternative: {fileID: 0}
   _greatFormAlternative: {fileID: 0}
   _transform: {fileID: 0}
-  _minLightNecessary: 5
-  _maxLightNecessary: 9
-  _perfectLightValue: 8
+  _minLightNecessary: 12
+  _maxLightNecessary: 18
+  _perfectLightValue: 14
   _lightAborbed: 0
   _minDarknessNecessary: 0
-  _maxDarknessNecessary: 2
+  _maxDarknessNecessary: 6
   _perfectDarknessValue: 0
   _darknessAbsorbed: 0
   _occupiedSpot: {fileID: 0}

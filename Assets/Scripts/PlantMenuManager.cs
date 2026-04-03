@@ -38,8 +38,8 @@ public class PlantMenuManager : MonoBehaviour {
         else {
             Destroy(gameObject);
         }
-
-            _inputSystem = new InputSystem_Actions();
+        
+        _inputSystem = new InputSystem_Actions();
         _inputSystem.Player.Click.performed += PlacePlant;
         _inputSystem.Player.Click.Enable();
 

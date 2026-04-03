@@ -61,12 +61,12 @@ MonoBehaviour:
   _greatFormAlternative: {fileID: 3377107568670013665}
   _transform: {fileID: 0}
   _minLightNecessary: 0
-  _maxLightNecessary: 7
-  _perfectLightValue: 7
+  _maxLightNecessary: 6
+  _perfectLightValue: 0
   _lightAborbed: 0
-  _minDarknessNecessary: 0
-  _maxDarknessNecessary: 7
-  _perfectDarknessValue: 7
+  _minDarknessNecessary: 12
+  _maxDarknessNecessary: 18
+  _perfectDarknessValue: 15
   _darknessAbsorbed: 0
   _occupiedSpot: {fileID: 0}
   _spotGroup: {fileID: 0}

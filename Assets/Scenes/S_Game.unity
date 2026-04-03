@@ -1683,7 +1683,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &685545001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2588,7 +2588,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1175296900
 Transform:
   m_ObjectHideFlags: 0
@@ -2679,7 +2679,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1225194521
 Transform:
   m_ObjectHideFlags: 0
@@ -3099,7 +3099,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1522586860
 Transform:
   m_ObjectHideFlags: 0
@@ -3469,21 +3469,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlantManager
   _plantedPlants: []
-  _hitLayerMask:
-    serializedVersion: 2
-    m_Bits: 960
-  _plantLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  _stopAllLayerMask:
-    serializedVersion: 2
-    m_Bits: 128
-  _stopLightLayerMask:
-    serializedVersion: 2
-    m_Bits: 256
-  _stopDarklayerMask:
-    serializedVersion: 2
-    m_Bits: 512
 --- !u!4 &1586758472
 Transform:
   m_ObjectHideFlags: 0
@@ -4481,7 +4466,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2093159268
 Transform:
   m_ObjectHideFlags: 0

@@ -37,15 +37,15 @@ public class Plant : MonoBehaviour {
     Transform _sunTransform;
 
     [Header("Light Value Params")]
-    [SerializeField, Range(0, 10)] int _minLightNecessary = 1;
-    [SerializeField, Range(0, 10)] int _maxLightNecessary = 10;
-    [SerializeField, Range(0, 10)] int _perfectLightValue = 5;
+    [SerializeField, Range(0, 18)] int _minLightNecessary = 1;
+    [SerializeField, Range(0, 18)] int _maxLightNecessary = 10;
+    [SerializeField, Range(0, 18)] int _perfectLightValue = 5;
     [SerializeField] int _lightAborbed = 0;
 
     [Header("Darkness Value Params")]
-    [SerializeField, Range(0, 10)] int _minDarknessNecessary = 1;
-    [SerializeField, Range(0, 10)] int _maxDarknessNecessary = 10;
-    [SerializeField, Range(0, 10)] int _perfectDarknessValue = 5;
+    [SerializeField, Range(0, 18)] int _minDarknessNecessary = 1;
+    [SerializeField, Range(0, 18)] int _maxDarknessNecessary = 10;
+    [SerializeField, Range(0, 18)] int _perfectDarknessValue = 5;
     [SerializeField] int _darknessAbsorbed = 0;
 
 
@@ -92,12 +92,22 @@ public class Plant : MonoBehaviour {
 
         if(_lightAborbed >= _minLightNecessary && _lightAborbed <= _maxLightNecessary && _darknessAbsorbed >= _minDarknessNecessary && _darknessAbsorbed <= _maxDarknessNecessary) {
             if(_plantState != PlantStates.DEAD) {
-                _plantState = PlantStates.WELL;
+                PlantStates newplantState = PlantStates.BABY;
+                if(_lightAborbed == _perfectLightValue && _darknessAbsorbed == _perfectDarknessValue) {
+                    newplantState = PlantStates.PERFECT;
+                }
+                else {
+                    newplantState = PlantStates.WELL;
+                }
+
+                if(_plantState == PlantStates.WELL || _plantState == PlantStates.PERFECT) {
+                    _plantState = newplantState;
+                    return;
+                }
+
+                _plantState = newplantState;
                 DisableAllStates();
                 _wellForm.SetActive(true);
-                if(_lightAborbed == _perfectLightValue && _darknessAbsorbed == _perfectDarknessValue) {
-                    _plantState = PlantStates.PERFECT;
-                }
             }
         }
         else if (_lightAborbed > _maxLightNecessary || _darknessAbsorbed > _maxDarknessNecessary) {
