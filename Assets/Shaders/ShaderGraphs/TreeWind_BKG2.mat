@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_Treewind
+  m_Name: TreeWind_BKG2
   m_Shader: {fileID: -6465566751694194690, guid: d81e4cc2bf1b80b4d9d3d972ade31865, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
